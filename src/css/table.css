@@ -1,0 +1,55 @@
+.all-wrapper {
+  display: flex;
+  background-color: #000000;
+}
+
+.chat-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatbox {
+  margin: 0 0 .5em 1em;
+  background-color: #0F0F0F;
+  border: 8px solid #1d1d1d;
+  border-top: none;
+  width: 65vw;
+  height: 82vh;
+}
+
+.table-form-wrapper {
+    margin: 0 0 0 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1d1d1d;
+    height: 6vh;
+    padding-left: 5px;
+    padding-right: 8px;
+}
+
+.table-form-wrapper input {
+    outline: none;
+    border: none;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    padding-left: 10px;
+    background-color: #0F0F0F;
+    color: #D8D8D8;
+    width: 74.4rem;
+    height: 1.7rem;
+}
+
+.fav-dices {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1em;
+    margin-top: .5em;
+    height: 9.2vh;
+    background-color: #1d1d1d
+}
+
+::placeholder {
+  color: #D8D8D8;
+}
