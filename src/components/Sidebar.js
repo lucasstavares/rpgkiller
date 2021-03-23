@@ -27,7 +27,10 @@ export default function Sidebar() {
           title="Mesas"
           icon={<img className="" alt="" src="/dice.ico"></img>}
         >
-          <MenuItem>Procurar Mesas</MenuItem>
+          <MenuItem>
+            Procurar Mesas
+            <Link to="/searchTables"></Link>
+          </MenuItem>
           <MenuItem>Mesas Favoritas</MenuItem>
           <MenuItem>Minhas Mesas</MenuItem>
           <MenuItem>
@@ -39,8 +42,9 @@ export default function Sidebar() {
           title="Configurações"
           icon={<img className="" alt="" src="/icons8_automation.ico"></img>}
         >
-          <MenuItem>Logout
-          <Link to="/logout"></Link>
+          <MenuItem>
+            Logout
+            <Link to="/logout"></Link>
           </MenuItem>
         </SubMenu>
       </Menu>

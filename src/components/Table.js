@@ -6,29 +6,42 @@ import socket from "../socket.js";
 
 function Table(props) {
   const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([]);
   const id = props.match.params.id;
+
   useEffect(() => {
     function connect() {
       socket.emit(
         "start",
         {
           token: sessionStorage.token,
-          table_id: props.match.params.id,
+          table_id: id,
         },
         (response) => {
           console.log(response);
+          let counter = 0;
+          socket.on("msg", (data) => {
+            const arrayMsg = messages;
+            arrayMsg.push({
+              text: data.msg,
+              owner: data.username,
+              id: counter,
+            });
+            counter++;
+            console.log(arrayMsg);
+            setMessages(arrayMsg);
+          });
         }
       );
     }
     connect();
-  }, []);
+  }, [id]);
 
   const onSubmit = (e) => {
     e.preventDefault();
     socket.emit(
       "msg",
       {
-        token: sessionStorage.token,
         msg: input,
       },
       (response) => {
@@ -41,14 +54,24 @@ function Table(props) {
     <div className="all-wrapper">
       <Sidebar></Sidebar>
       <div className="chat-wrapper">
-        <div className="chatbox"></div>
+        <div className="chatbox">
+          {messages.length > 0 &&
+            messages.map((message) => {
+              console.log(message);
+              return (
+                <div key={message.id} style={{ color: "white" }}>
+                  {message.text} by {message.owner}
+                </div>
+              );
+            })}
+        </div>
         <div className="table-form-wrapper">
           <form onSubmit={onSubmit}>
             <input
               placeholder="Mande uma mensagem!"
               onChange={(e) => setInput(e.target.value)}
             ></input>
-            <button type="submit"></button>
+            <button type="submit">submit</button>
           </form>
         </div>
         <div className="fav-dices"></div>

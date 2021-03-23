@@ -18,7 +18,7 @@ export default function CreateMesa() {
   });
 
   const history = useHistory();
-  
+
   function onCreate(values) {
     axios
       .get("/create_table", {
@@ -31,7 +31,7 @@ export default function CreateMesa() {
         },
       })
       .then(function (response) {
-        history.push("/table/"+response.data.id);
+        history.push("/table/" + response.data.id);
       })
       .catch(function (error) {});
   }
