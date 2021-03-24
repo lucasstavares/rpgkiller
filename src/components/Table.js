@@ -5,79 +5,63 @@ import "../css/table.css";
 import socket from "../socket.js";
 
 function Table(props) {
+  const [messages, setMessages] = useState(["hola?"]);
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([]);
-  const id = props.match.params.id;
 
   useEffect(() => {
-    function connect() {
-      socket.emit(
-        "start",
-        {
-          token: sessionStorage.token,
-          table_id: id,
-        },
-        (response) => {
-          console.log(response);
-          let counter = 0;
-          socket.on("msg", (data) => {
-            const arrayMsg = messages;
-            arrayMsg.push({
-              text: data.msg,
-              owner: data.username,
-              id: counter,
-            });
-            counter++;
-            console.log(arrayMsg);
-            setMessages(arrayMsg);
-          });
-        }
-      );
-    }
-    connect();
-  }, [id]);
+    console.log(messages);
+    socket.once("msg", (msg) => {
+      setMessages([...messages, msg]);
+    });
+    socket.once("roll", (msg) => {
+      setMessages([...messages, msg]);
+    });
+  }, [messages]);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
     socket.emit(
-      "msg",
+      "start",
       {
-        msg: input,
+        token: sessionStorage.token,
+        table_id: props.match.params.id,
       },
       (response) => {
-        console.log(response);
+        setMessages(response);
       }
     );
+  }, []);
+
+  const send = () => {
+    socket.emit("msg", { msg: input }, (response) => {
+      console.log(response);
+    });
+  };
+
+  const roll = () => {
+    socket.emit("roll", { dice: 6 }, (response) => {
+      console.log(response);
+    });
   };
 
   return (
-    <div className="all-wrapper">
-      <Sidebar></Sidebar>
-      <div className="chat-wrapper">
-        <div className="chatbox">
-          {messages.length > 0 &&
-            messages.map((message) => {
-              console.log(message);
-              return (
-                <div key={message.id} style={{ color: "white" }}>
-                  {message.text} by {message.owner}
-                </div>
-              );
-            })}
-        </div>
-        <div className="table-form-wrapper">
-          <form onSubmit={onSubmit}>
-            <input
-              placeholder="Mande uma mensagem!"
-              onChange={(e) => setInput(e.target.value)}
-            ></input>
-            <button type="submit">submit</button>
-          </form>
-        </div>
-        <div className="fav-dices"></div>
-      </div>
+    <div
+      className="all-wrapper"
+      style={{ display: "flex", flexDirection: "column", color: "white" }}
+    >
+      {messages.length > 0 &&
+        messages.map((msg) => {
+          return <div>{msg.msg}</div>;
+        })}
+      <input
+        value={input}
+        type="text"
+        placeholder="pf funciona programa"
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <button onClick={send}>click</button>
+      <button onClick={roll}>roll</button>
     </div>
   );
 }
 
-export default withRouter(Table);
+export default Table;
