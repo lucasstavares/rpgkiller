@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { listTables, joinTable } from "./requests";
 import Sidebar from "./Sidebar";
 import { useHistory } from "react-router";
+import "../css/searchtable.css";
 
 export default function SearchTables() {
   const [tables, setTables] = useState([]);
@@ -31,12 +32,15 @@ export default function SearchTables() {
   }, []);
 
   return (
-    <div className="form-wrapper">
+    <div className="search-table-wrapper">
       <Sidebar />
-      <div styles={{ display: "flex" }}>
-        <h1>Procurar Mesas</h1>
-        <input placeholder="Digite o nome de uma mesa"></input>
-        <button>Procurar</button>
+      <div className="search-table-form" styles={{ display: "flex" }}>
+        <h1 className="label-search-table">Procurar Mesas</h1>
+        <input
+          className="input-search-table"
+          placeholder="Digite o nome de uma mesa"
+        ></input>
+        <button className="button-search-table">Procurar</button>
         {tables.length > 0 &&
           tables.map((table) => {
             return (

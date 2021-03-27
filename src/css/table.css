@@ -1,55 +1,84 @@
 .all-wrapper {
   display: flex;
-  background-color: #000000;
+  flex-direction: row;
+  width: 100%;
 }
 
-.chat-wrapper {
+.chat-container {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  color: white;
+  height: 100vh;
+  background-color: rgb(12, 12, 12);
 }
 
-.chatbox {
-  margin: 0 0 .5em 1em;
-  background-color: #0F0F0F;
-  border: 8px solid #1d1d1d;
-  border-top: none;
-  width: 65vw;
-  height: 82vh;
+.chat-content {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 100%;
 }
 
-.table-form-wrapper {
-    margin: 0 0 0 1em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #1d1d1d;
-    height: 6vh;
-    padding-left: 5px;
-    padding-right: 8px;
+.chat-content::-webkit-scrollbar {
+  width: 0.2rem;
 }
 
-.table-form-wrapper input {
-    outline: none;
-    border: none;
-    margin-top: .5em;
-    margin-bottom: .5em;
-    padding-left: 10px;
-    background-color: #0F0F0F;
-    color: #D8D8D8;
-    width: 74.4rem;
-    height: 1.7rem;
+.chat-content::-webkit-scrollbar-track {
+  background: #000000;
 }
 
-.fav-dices {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 1em;
-    margin-top: .5em;
-    height: 9.2vh;
-    background-color: #1d1d1d
+.chat-content::-webkit-scrollbar-thumb {
+  background-color: rgb(56, 56, 56);
+  border-radius: 10px;
+  border: none;
 }
 
-::placeholder {
-  color: #D8D8D8;
+.players-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #1d1d1d;
+  height: 70px;
+}
+
+.message-input {
+  width: 80%;
+  height: 2rem;
+  border-radius: 1rem;
+  padding: 0 1rem;
+  margin: 0.5rem 1rem;
+}
+
+.message-input:focus {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 7px 6px #00eb1b5b;
+  -moz-box-shadow: 0px 0px 7px 6px #00eb1b5b;
+  box-shadow: 0px 0px 7px 6px #00eb1b5b;
+}
+
+.send-icon {
+  height: 30px;
+  cursor: pointer;
+}
+
+.dice-icon {
+  height: 50px;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.roll-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #1d1d1d;
 }
