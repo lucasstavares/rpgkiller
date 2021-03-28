@@ -36,7 +36,7 @@ export default function PlayerCard({ name, role }) {
     <div className="player-card">
       <div className="top">
         <div className="player-img-container">
-          <img />
+          <img alt="kek" />
         </div>
         <div className="player-info-container">
           <p className="player-name">{name}</p>
@@ -53,7 +53,7 @@ export default function PlayerCard({ name, role }) {
       <div className="bottom">
         {playerBars.length > 0 &&
           playerBars.map((bar) => {
-            return <Bar name={bar.barName} />;
+            return <Bar key={Math.random()} name={bar.barName} />;
           })}
         <form className="new-bar-form" onSubmit={newBar}>
           <input
@@ -62,7 +62,11 @@ export default function PlayerCard({ name, role }) {
             onChange={(e) => setNewBarInput(e.target.value)}
           />
           <button className="bars-button" type="submit">
-            <img style={{ width: "15px", height: "15px" }} src={plus} />
+            <img
+              alt="aff"
+              style={{ width: "15px", height: "15px" }}
+              src={plus}
+            />
           </button>
         </form>
       </div>

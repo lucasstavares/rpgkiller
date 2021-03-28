@@ -8,7 +8,7 @@ import socket from "../socket.js";
 
 function Table(props) {
   const dummy = useRef();
-  const [messages, setMessages] = useState(["hola?"]);
+  const [messages, setMessages] = useState("");
   const [input, setInput] = useState("");
 
   useEffect(() => {
@@ -17,37 +17,45 @@ function Table(props) {
      qnts listeners podem ser registrados
      já o off apaga o anterior, então tá 
      safe*/
-    socket.off("msg")
+    console.log("denieu");
+    socket.off("msg");
     socket.on("msg", (msg) => {
-      const aux = [...messages, msg];
+      const aux = [...messages, <p key={msg.id_msg}>{msg.msg}</p>];
       setMessages(aux);
-      renderNewMessage(msg.msg);
-      console.log("nova msg recebida")
+
+      dummy.current.scrollIntoView({ behavior: "smooth" });
     });
   }, [messages]);
 
   useEffect(() => {
-    socket.emit(
-      "start",
-      {
-        token: sessionStorage.token,
-        table_id: props.match.params.id,
-      },
-      (response) => {
-        console.log(response);
-        setMessages(response.msgs);
-        response.msgs.forEach((msg) => {
-          renderNewMessage(msg.msg);
-        });
-        //dummy.current.scrollIntoView({ behavior: "smooth" });
-      }
-    );
+    socket.connect();
+    socket.once("connect", () => {
+      socket.emit(
+        "start",
+        {
+          token: sessionStorage.token,
+          table_id: props.match.params.id,
+        },
+        (response) => {
+          console.log(response);
+          let arrayMsg = [];
+          arrayMsg = response.msgs.map((msg) => {
+            return <p key={msg.id_msg}>{msg.msg}</p>;
+          });
+          console.log(arrayMsg);
+          setMessages(arrayMsg);
+          dummy.current.scrollIntoView();
+        }
+      );
+    });
   }, []);
 
   const send = (e) => {
+    console.log(e);
     e.preventDefault();
     socket.emit("msg", { msg: input }, (response) => {
       console.log(response);
+      e.target.elements.formInput.value = "";
     });
   };
 
@@ -57,23 +65,12 @@ function Table(props) {
     });
   };
 
-  const renderNewMessage = (msg) => {
-    const newMsg = document.createElement("p");
-    newMsg.innerText = msg;
-    const chatEl = document.getElementById("chat-content");
-    chatEl.appendChild(newMsg);
-    newMsg.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div className="all-wrapper">
       <Sidebar />
       <div className="chat-container">
         <div id="chat-content" className="chat-content">
-          {/*messages.length > 0 &&
-            messages.map((msg) => {
-              return <div key={Math.random()}>{msg.msg}</div>;
-            })*/}
+          {messages}
           <div ref={dummy}></div>
         </div>
 
@@ -81,6 +78,7 @@ function Table(props) {
           <input
             className="message-input"
             value={input}
+            name="formInput"
             type="text"
             placeholder="pf funciona programa"
             onChange={(e) => setInput(e.target.value)}
