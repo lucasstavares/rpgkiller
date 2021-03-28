@@ -12,15 +12,17 @@ function Table(props) {
   const [input, setInput] = useState("");
 
   useEffect(() => {
-    socket.once("msg", (msg) => {
+    /*ao inves de once é melhor usar off,
+     o once apaga apos o uso mas n limita 
+     qnts listeners podem ser registrados
+     já o off apaga o anterior, então tá 
+     safe*/
+    socket.off("msg")
+    socket.on("msg", (msg) => {
       const aux = [...messages, msg];
       setMessages(aux);
       renderNewMessage(msg.msg);
-    });
-    socket.once("roll", (msg) => {
-      const aux = [...messages, msg];
-      setMessages(aux);
-      renderNewMessage(msg.msg);
+      console.log("nova msg recebida")
     });
   }, [messages]);
 
@@ -91,7 +93,7 @@ function Table(props) {
           </button>
         </form>
 
-        <div className="roll-container" onClick={renderNewMessage}>
+        <div className="roll-container" onClick={roll}>
           <img className="dice-icon" src={DiceIcon} alt="dice" />
           <img className="dice-icon" src={DiceIcon} alt="dice" />
           <img className="dice-icon" src={DiceIcon} alt="dice" />
