@@ -1,0 +1,60 @@
+.create-table-wrapper {
+  display: flex;
+  flex-direction: row;
+  color: #ffffff;
+}
+
+.error{
+    font-weight: 400;
+    padding-left: 25px;
+}
+
+.create-table-wrapper h1 {
+  padding: 20px 0px 10px 25px;
+  font-size: 4em;
+  color: white;
+  font-weight: 400;
+}
+
+.create-table-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-table-input {
+  outline: none;
+  width: 400px;
+  font-size: 1.5em;
+  margin: 15px 0px 0px 25px;
+}
+
+.create-table-checkbox-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px 5px 25px;
+}
+
+.create-table-checkbox-wrapper label {
+  padding-bottom: 3px;
+}
+
+.button-create-table {
+  transition: 200ms;
+  outline: none;
+  margin-left: 25px;
+  padding: 1px 3px 1px 3px;
+  font-size: 1.5em;
+  width: auto;
+  color: #333333;
+  background-color: white;
+  border: solid black;
+  border-width: 1px;
+  border-style: inset;
+}
+
+.button-create-table:hover {
+  transform: scale(1.03, 1.03);
+  -webkit-box-shadow: 0px 0px 10px 10px rgba(32, 39, 33, 0.363);
+  -moz-box-shadow: 0px 0px 10px 10px rgba(32, 39, 33, 0.363);
+  box-shadow: 0px 0px 10px 10px rgba(32, 39, 33, 0.363);
+}

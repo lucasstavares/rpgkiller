@@ -1,0 +1,146 @@
+body {
+  background-color: #333333;
+}
+.search-table-wrapper {
+  display: flex;
+}
+.search-table-form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-search-table {
+  color: white;
+  font-size: 4em;
+  font-weight: 400;
+  padding: 20px 0px 10px 25px;
+}
+
+.input-search-table {
+  outline: none;
+  width: 400px;
+  font-size: 1.5em;
+  margin: 15px 0px 0px 25px;
+}
+
+.button-search-table {
+  transition: 200ms;
+  outline: none;
+  margin-left: 8px;
+  padding: 1px 3px 1px 3px;
+  font-size: 1.5em;
+  width: auto;
+  color: #333333;
+  background-color: white;
+  border: solid black;
+  border-width: 1px;
+  border-style: inset;
+}
+
+.button-search-table:hover {
+  transform: scale(1.03, 1.03);
+  -webkit-box-shadow: 0px 0px 10px 6px rgba(32, 39, 33, 0.363);
+  -moz-box-shadow: 0px 0px 7px 6px rgba(32, 39, 33, 0.363);
+  box-shadow: 0px 0px 10px 6px rgba(32, 39, 33, 0.363);
+}
+
+.input-search-table::placeholder {
+  padding-left: 2px;
+}
+
+.table-card {
+  margin: 20px 0px 0px 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.table-content-wrapper {
+  cursor: pointer;
+  height: 200px;
+  margin: 0px 20px 20px 0px;
+  width: 400px;
+  background-color: #1d1d1d;
+  -webkit-box-shadow: 0px 0px 10px 6px rgba(32, 39, 33, 0.363);
+  -moz-box-shadow: 0px 0px 10px 6px rgba(32, 39, 33, 0.363);
+  box-shadow: 0px 0px 10px 6px rgba(32, 39, 33, 0.363);
+}
+
+.table-content-wrapper h1 {
+  padding-top: 13px;
+  grid-area: title; 
+  font-size: 1.5em;
+  color: white;
+  font-weight: 600;
+}
+
+.table-content-wrapper p {
+  grid-area: description;
+  width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1em;
+  color: white;
+  font-weight: 400;
+}
+
+.table-content-wrapper .table-content {
+  display: grid;
+  grid-template-columns: 150px 250px ;
+  grid-template-rows: 150px 25px 25px;
+  gap: 0px 0px;
+  grid-template-areas:
+    "img tiltle"
+    "status status"
+    "status status";
+}
+
+.table-content-wrapper .table-content .table-img {
+  grid-area: img;
+  height: fit-content;
+  width: fit-content;
+}
+
+.lock-icon {
+  height: 20px;
+  width: 10px;
+}
+
+.status {
+  display: grid;
+  grid-template-columns: 180px 1.5fr 1fr;
+  grid-template-rows: 28px 30px 10px;
+  gap: 0px 0px;
+  grid-template-areas:
+    "locked . slots"
+    "adult adult adult";
+  grid-area: status;
+}
+
+.locked {
+  grid-area: locked;
+  display: flex;
+  padding-left: 15px;
+}
+
+.locked p {
+  margin-left: 2.5px;
+  font-size: 1.02rem;
+}
+
+.adulto {
+  height: 70%;
+  padding-left: 15px;
+  grid-area: adult;
+  color: white;
+  background-color: #B50000;
+}
+
+.vagas {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  grid-area: slots; 
+  color: white;
+  height: 81%;
+  background-color: green
+}

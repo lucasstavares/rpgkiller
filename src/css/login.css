@@ -1,0 +1,11 @@
+.header {
+    color: #2F2E41;
+    width: 303px;
+    margin-bottom: 8.4vh;
+    font-weight: 700;
+    font-size: 4.5vmin;
+}
+
+.error {
+    color: red;
+}

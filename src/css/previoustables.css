@@ -1,0 +1,28 @@
+.prev-tables {
+    display: flex;
+    margin-top: auto;
+    flex-direction: column;
+    background-color: #161616;
+    width: 100%;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.prev-tables header {
+    font-size: x-large;
+    padding-left: 1.5rem;
+    color: #adadad;
+    font-weight: 300;
+}
+
+.prev-tables div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: #161616;
+}
+
+
+.prev-tables img {
+    width: 10vw;
+}

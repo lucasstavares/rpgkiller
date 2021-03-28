@@ -1,0 +1,6 @@
+.dashboard-wrapper {
+  display: flex;
+}
+.sidebar-height {
+  height: 100vh;
+}

@@ -1,0 +1,10 @@
+.friend-list {
+    background-color: #1D1D1D;
+}
+
+.friend-list header {
+    font-family: 'Work Sans', sans-serif;;
+    color: #adadad; 
+    font-weight: 100;
+    text-align: center;
+}
