@@ -7,27 +7,29 @@ import "../css/table.css";
 import socket from "../socket.js";
 
 function Table(props) {
+  console.log("entrei");
+
   const dummy = useRef();
   const [messages, setMessages] = useState("");
   const [input, setInput] = useState("");
 
   useEffect(() => {
+    console.log("useffect1");
     /*ao inves de once é melhor usar off,
      o once apaga apos o uso mas n limita 
      qnts listeners podem ser registrados
      já o off apaga o anterior, então tá 
      safe*/
-    console.log("denieu");
     socket.off("msg");
     socket.on("msg", (msg) => {
-      const aux = [...messages, <p key={msg.id_msg}>{msg.msg}</p>];
+      const aux = [...messages, <p key={Math.random()}>{msg.msg}</p>];
       setMessages(aux);
-
       dummy.current.scrollIntoView({ behavior: "smooth" });
     });
   }, [messages]);
 
   useEffect(() => {
+    console.log("useffect2");
     socket.connect();
     socket.once("connect", () => {
       socket.emit(
@@ -40,7 +42,7 @@ function Table(props) {
           console.log(response);
           let arrayMsg = [];
           arrayMsg = response.msgs.map((msg) => {
-            return <p key={msg.id_msg}>{msg.msg}</p>;
+            return <p key={Math.random()}>{msg.msg}</p>;
           });
           console.log(arrayMsg);
           setMessages(arrayMsg);

@@ -1,37 +1,42 @@
-import './App.css';
-import PlayerCard from './player-card'
+import "./App.css";
+import PlayerCard from "./player-card";
 
 function App() {
-
   const players = [
     {
-      name: 'daniel',
-      role: 'master',
+      name: "daniel",
+      role: "master",
       bars: [],
-      img: ''
+      img: "",
     },
     {
-      name: 'lucas',
-      role: 'player',
+      name: "lucas",
+      role: "player",
       bars: [],
-      img: ''
+      img: "",
     },
     {
-      name: 'mateus',
-      role: 'player',
+      name: "mateus",
+      role: "player",
       bars: [],
-      img: ''
-    }
-  ]
-
+      img: "",
+    },
+  ];
 
   return (
     <div className="App">
       <section className="table-players-container">
-        {players.map(player => {
-          return <PlayerCard name={player.name} role={player.role} bars={player.bars} img={player.img}/>
+        {players.map((player) => {
+          return (
+            <PlayerCard
+              key={Math.random()}
+              name={player.name}
+              role={player.role}
+              bars={player.bars}
+              img={player.img}
+            />
+          );
         })}
-        
       </section>
     </div>
   );
